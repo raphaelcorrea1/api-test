@@ -28,7 +28,7 @@ class ProdutoController {
     static async createProduto(req, res) {
         const newProduto = req.body;
         try {
-            const newProdutoCreated = await database.Produtos.create(newProdutos);
+            const newProdutoCreated = await database.Produtos.create(newProduto);
             return res.status(200).json(newProdutoCreated);
         } catch (error) {
             return res.status(500).json(error.message);
