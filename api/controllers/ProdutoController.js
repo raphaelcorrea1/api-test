@@ -3,7 +3,9 @@ const database = require('../models');
 class ProdutoController {
     static async catchAllProdutos(req, res){
         try {
-            const allProdutos = await database.Produtos.findAll();
+            const allProdutos = await database.Produtos.findAll({
+                attributes: ['id', 'descricao_produto', 'categoria_produto', 'valor_produto', 'validade_produto', 'quantidade_estoque', 'createdAt', 'updatedAt']
+            });
             return res.status(200).json(allProdutos);
         } catch (error) {
             return res.status(500).json(error.message);
@@ -15,6 +17,8 @@ class ProdutoController {
         const { id } = req.params;
         try {
             const oneProduto = await database.Produtos.findOne( {
+                attributes: ['id', 'descricao_produto', 'categoria_produto', 'valor_produto', 'validade_produto', 'quantidade_estoque', 'createdAt', 'updatedAt']
+                ,
                 where: { 
                     id: Number(id) 
                 }
@@ -41,8 +45,8 @@ class ProdutoController {
         const newInfos = req.body;
         try {
             await database.Produtos.update(newInfos, {where: {id: Number(id)}});
-            const ProdutoUpdated = await database.Produtos.findOne({where: {id: Number(id)}});
-            return res.status(200).json(ProdutoUpdated)
+            const produtoUpdated = await database.Produtos.findOne({where: {id: Number(id)}});
+            return res.status(200).json(produtoUpdated)
         } catch (error) { 
             return res.status(500).json(error.message);
         }

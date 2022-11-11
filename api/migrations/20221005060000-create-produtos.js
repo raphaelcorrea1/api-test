@@ -10,21 +10,23 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       descricao_produto: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       categoria_produto: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       valor_produto: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       validade_produto: {
+        allowNull: false,
         type: Sequelize.DATEONLY
       },
       quantidade_estoque: {
-        type: Sequelize.INTEGER
-      },
-      limite_estoque: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Produtos.belongsTo(models.Vendas, {
+        foreignKey: 'id'
+      });
+      Produtos.belongsTo(models.Compras, {
+        foreignKey: 'id'
+      });
     }
   }
   Produtos.init({
@@ -18,8 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     categoria_produto: DataTypes.STRING,
     valor_produto: DataTypes.FLOAT,
     validade_produto: DataTypes.DATEONLY,
-    quantidade_estoque: DataTypes.INTEGER,
-    limite_estoque: DataTypes.INTEGER
+    quantidade_estoque: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Produtos',
